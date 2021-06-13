@@ -1,10 +1,13 @@
 package com.example.projectcovid19;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 
 public class Otp_screen extends AppCompatActivity {
@@ -17,6 +20,17 @@ public class Otp_screen extends AppCompatActivity {
         etDigit2=findViewById(R.id.etDigit2);
         etDigit3=findViewById(R.id.etDigit3);
         etDigit4=findViewById(R.id.etDigit4);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_baseline_west_24));
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //What to do on back clicked
+                Intent intent = new Intent(Otp_screen.this,Login.class);
+                startActivity(intent);
+            }
+        });
         stupOtps();
     }
 
