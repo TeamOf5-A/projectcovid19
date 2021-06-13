@@ -21,7 +21,8 @@ public class Otp_screen extends AppCompatActivity {
         etDigit3=findViewById(R.id.etDigit3);
         etDigit4=findViewById(R.id.etDigit4);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_baseline_west_24));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
