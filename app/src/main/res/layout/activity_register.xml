@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@id/textView">
 
         <EditText
-            android:id="@+id/mobilenumber"
+            android:id="@+id/HospitalName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -40,7 +40,7 @@
             android:drawableLeft="@drawable/ic_baseline_person_24"
             android:drawablePadding="20dp"
             android:gravity="start"
-            android:hint="User Name"
+            android:hint="Enter the Name"
             android:inputType="textPersonName"
             android:padding="20dp"
             android:textColor="#123"
@@ -48,7 +48,7 @@
             android:textColorHint="#123" />
 
         <EditText
-            android:id="@+id/mobilenumber2"
+            android:id="@+id/MobileNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
@@ -102,6 +102,8 @@
         android:textSize="20dp"
         android:visibility="invisible"
         app:layout_constraintTop_toBottomOf="@+id/backtologin" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
