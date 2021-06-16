@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".Splash_screen">
  <pl.droidsonroids.gif.GifImageView
      android:id="@+id/gif"
@@ -13,16 +14,33 @@
      android:src="@drawable/coidgif3"
      app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/artifika"
-        android:gravity="center"
-        android:text="CoviCare"
-        android:textColor="#000"
-        android:textSize="75dp"
-        app:layout_constraintTop_toBottomOf="@+id/gif" />
+        android:layout_marginTop="50dp"
+        app:layout_constraintTop_toBottomOf="@+id/gif">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/artifika"
+            android:gravity="center"
+            android:text="CoviCare"
+            android:textColor="#000"
+            android:textSize="75dp" />
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:alpha="0.3"
+            android:src="@drawable/flowerbackground3" />
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
