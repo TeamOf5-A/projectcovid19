@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 public class Otp_screen extends AppCompatActivity {
-    EditText etDigit1,etDigit2,etDigit3,etDigit4;
+    EditText etDigit1,etDigit2,etDigit3,etDigit4,etDigit5,etDigit6;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,8 @@ public class Otp_screen extends AppCompatActivity {
         etDigit2=findViewById(R.id.etDigit2);
         etDigit3=findViewById(R.id.etDigit3);
         etDigit4=findViewById(R.id.etDigit4);
+        etDigit5 = findViewById(R.id.etDigit5);
+        etDigit6 = findViewById(R.id.etDigit6);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
 
@@ -105,7 +107,7 @@ public class Otp_screen extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(!s.toString().trim().isEmpty()){
-                    etDigit4.requestFocus();
+                    etDigit5.requestFocus();
                 }
             }
 
@@ -113,6 +115,46 @@ public class Otp_screen extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(s.toString().trim().isEmpty()){
                     etDigit3.requestFocus();
+                }
+            }
+        });
+        etDigit5.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    etDigit6.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().trim().isEmpty()){
+                    etDigit4.requestFocus();
+                }
+            }
+        });
+        etDigit6.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!s.toString().trim().isEmpty()){
+                    etDigit6.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().trim().isEmpty()){
+                    etDigit5.requestFocus();
                 }
             }
         });
