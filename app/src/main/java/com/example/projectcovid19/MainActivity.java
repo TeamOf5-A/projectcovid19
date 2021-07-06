@@ -12,12 +12,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
     private LinearLayout available,request,profile;
     private ImageView logout;
-
-
+    private FirebaseUser firebaseUser;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+    private String name,pincode,city,userid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +31,10 @@ public class MainActivity extends AppCompatActivity {
         request = findViewById(R.id.request);
         logout = findViewById(R.id.logout);
         profile = findViewById(R.id.profile);
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        firebaseUser = mAuth.getCurrentUser();
+        userid = firebaseUser.getUid();
        logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
+        DocumentReference documentReference = db.collection("User").document(userid);
 
     }
     @Override

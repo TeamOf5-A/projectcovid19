@@ -85,7 +85,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/nameofhospital"
+                            android:id="@+id/nameofuser"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
 
@@ -95,7 +95,6 @@
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -131,7 +130,6 @@
                             />
 
                     </com.google.android.material.textfield.TextInputLayout>
-
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/Pincode"
@@ -220,7 +218,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/Regno"
+                            android:id="@+id/state"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textColor="#000"
