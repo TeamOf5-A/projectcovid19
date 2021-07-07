@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -54,9 +53,10 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
 
         <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="30dp"
             android:fontFamily="@font/amarante"
             android:gravity="center"
             android:text="Login"
@@ -70,7 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="120dp"
             android:layout_marginRight="30dp"
 
             android:gravity="center"
@@ -119,20 +119,41 @@
             app:layout_constraintTop_toBottomOf="@+id/usernametextbox" />
 
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
             android:gravity="center"
-            android:text="By logging in, You agree to T&amp;C"
+            android:text="By logging in, You agree to "
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="18dp"
+
             app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="Privacy policy &amp; Terms and Condition"
+            android:textColor="#DC143C"
+            android:textSize="18dp"
+
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+
+
+
+
+
+
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="370dp"
+            android:layout_marginTop="400dp"
             android:indeterminate="true"
             android:indeterminateTint="#000"
             android:indeterminateTintMode="src_atop"

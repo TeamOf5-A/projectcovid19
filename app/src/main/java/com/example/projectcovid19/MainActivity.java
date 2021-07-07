@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
     private LinearLayout available,request,profile;
     private ImageView logout;
+    private TextView faq;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -31,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         request = findViewById(R.id.request);
         logout = findViewById(R.id.logout);
         profile = findViewById(R.id.profile);
+        faq = findViewById(R.id.faq);
         db = FirebaseFirestore.getInstance();
+
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = mAuth.getCurrentUser();
         userid = firebaseUser.getUid();
@@ -69,7 +72,13 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
-        DocumentReference documentReference = db.collection("User").document(userid);
+     faq.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View v) {
+             Intent i = new Intent(MainActivity.this,Faq_Page.class);
+             startActivity(i);
+         }
+     });
 
     }
     @Override
