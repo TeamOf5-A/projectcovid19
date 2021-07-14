@@ -11,7 +11,9 @@
         android:roundIcon="@drawable/covidlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Projectcovid19">
-        <activity android:name=".Faq_Page"></activity>
+        <activity android:name=".Post_Request"></activity>
+        <activity android:name=".Post_Availability" />
+        <activity android:name=".Faq_Page" />
         <activity android:name=".Profile" />
         <activity android:name=".Request" />
         <activity android:name=".Availability" />

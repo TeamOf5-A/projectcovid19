@@ -58,6 +58,7 @@ public class Hospital_Profile extends AppCompatActivity {
     private static final String KEY_EMAIL = "email";
     private static final String KEY_REGNO = "Hospitalregno";
     private static final String KEY_PINCODE = "Pincode";
+    private static final String Key_accounttype = "Account";
 
     private static final String KEY_CITY = "CITY";
     private FirebaseUser firebaseUser;
@@ -142,10 +143,11 @@ public class Hospital_Profile extends AppCompatActivity {
                     data.put(KEY_REGNO,Hospitalregno);
                     data.put(KEY_PINCODE,Pincode);
                     data.put(KEY_CITY,CITY);
-                    db.collection("Hospital").document(Uid).set(data)
+                    data.put(Key_accounttype,"Hospital");
+                    db.collection("Hospital").document("Hospital Profile").collection("Users").document(Uid).set(data)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
-                                public void onSuccess(Void unused) {
+                                public void onSuccess(Void aVoid) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     Toast.makeText(Hospital_Profile.this, "success", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Hospital_Profile.this,MainActivity.class);

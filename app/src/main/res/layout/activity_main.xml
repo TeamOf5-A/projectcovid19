@@ -26,23 +26,15 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
-                android:fontFamily="@font/sunshiney"
-                android:text="Hello Vamshi"
-                android:textColor="#fff"
-                android:textSize="35dp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/name"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat_alternates"
-                android:text="532004 - Chennai"
+                android:text="Covid Care"
                 android:textColor="#fff"
-                android:textSize="20dp" />
+                android:textSize="30dp" />
+
+
+
 
             <ImageView
                 android:id="@+id/logout"

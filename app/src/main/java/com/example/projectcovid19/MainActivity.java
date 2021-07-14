@@ -19,7 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class MainActivity extends AppCompatActivity {
     private LinearLayout available,request,profile;
     private ImageView logout;
-    private TextView faq;
+    private TextView faq,nameoftheperson,City,Pincode;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity {
         logout = findViewById(R.id.logout);
         profile = findViewById(R.id.profile);
         faq = findViewById(R.id.faq);
+        nameoftheperson=findViewById(R.id.name);
+        City = findViewById(R.id.city);
+        Pincode =findViewById(R.id.pincode);
         db = FirebaseFirestore.getInstance();
 
         mAuth = FirebaseAuth.getInstance();
@@ -79,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
              startActivity(i);
          }
      });
+
 
     }
     @Override
