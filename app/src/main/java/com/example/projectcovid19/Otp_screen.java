@@ -101,7 +101,7 @@ public class Otp_screen extends AppCompatActivity {
 
 
                                 if(newuser){
-                                    Intent intent = new Intent(Otp_screen.this,Question.class);
+                                    Intent intent = new Intent(Otp_screen.this,User_Profile.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);
                                     finish();

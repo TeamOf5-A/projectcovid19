@@ -3,38 +3,33 @@ package com.example.projectcovid19;
 import java.util.Date;
 
 public class Request_pozo {
-
     public String username;
     public String request;
-    public String finaldate;
+    public String date;
     public String phoneno;
-    public String City;
-    public String citypincode;
-    public String user_id;
+
+    public String pincode;
 
 
 
-    public Request_pozo() {
+    public String getPincode() {
+        return pincode;
     }
 
-    public Request_pozo(String username, String request, String finaldate, String phoneno, String city, String citypincode) {
+    public void setPincode(String pincode) {
+        this.pincode = pincode;
+    }
 
+
+
+    public Request_pozo(String username, String request, String date, String phoneno) {
         this.username = username;
         this.request = request;
-        this.finaldate = finaldate;
+        this.date = date;
         this.phoneno = phoneno;
-        this.City = city;
-        this.citypincode = citypincode;
-        this.user_id = user_id;
+
     }
-
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public Request_pozo() {
     }
 
     public String getUsername() {
@@ -53,12 +48,12 @@ public class Request_pozo {
         this.request = request;
     }
 
-    public String getFinaldate() {
-        return finaldate;
+    public String getdate() {
+        return date;
     }
 
-    public void setFinaldate(String finaldate) {
-        this.finaldate = finaldate;
+    public void setdate(String date) {
+        this.date = date;
     }
 
     public String getPhoneno() {
@@ -69,21 +64,13 @@ public class Request_pozo {
         this.phoneno = phoneno;
     }
 
-    public String getCity() {
-        return City;
-    }
 
-    public void setCity(String city) {
-        City = city;
-    }
 
-    public String getCitypincode() {
-        return citypincode;
-    }
 
-    public void setCitypincode(String citypincode) {
-        this.citypincode = citypincode;
-    }
+
+
+
+
 
 
 }

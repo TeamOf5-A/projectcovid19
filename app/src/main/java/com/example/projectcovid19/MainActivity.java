@@ -28,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        available = findViewById(R.id.availability);
+
         request = findViewById(R.id.request);
         logout = findViewById(R.id.logout);
-        profile = findViewById(R.id.profile);
+        available = findViewById(R.id.availability);
         faq = findViewById(R.id.faq);
         nameoftheperson=findViewById(R.id.name);
         City = findViewById(R.id.city);
@@ -51,14 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-       available.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent i = new Intent(MainActivity.this,Availability.class);
-               startActivity(i);
 
-           }
-       });
        request.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -67,14 +60,15 @@ public class MainActivity extends AppCompatActivity {
 
            }
        });
-       profile.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               Intent i = new Intent(MainActivity.this,Profile.class);
-               startActivity(i);
+        available.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this,Availability.class);
+                startActivity(i);
 
-           }
-       });
+            }
+        });
+
      faq.setOnClickListener(new View.OnClickListener() {
          @Override
          public void onClick(View v) {

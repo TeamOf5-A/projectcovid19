@@ -99,7 +99,7 @@ public class Hospital_Profile extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        upload();
+
 
 
 

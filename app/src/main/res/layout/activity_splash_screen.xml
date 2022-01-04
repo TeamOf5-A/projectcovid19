@@ -6,19 +6,26 @@
     android:layout_height="match_parent"
 
     tools:context=".Splash_screen">
- <pl.droidsonroids.gif.GifImageView
-     android:id="@+id/gif"
-     android:layout_width="match_parent"
-     android:layout_height="400dp"
-     android:layout_margin="30dp"
-     android:src="@drawable/coidgif3"
-     app:layout_constraintTop_toTopOf="parent"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gif"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+
+        android:src="@drawable/tree"
+
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="30dp" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginBottom="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gif">
 
         <TextView
@@ -29,9 +36,9 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/artifika"
             android:gravity="center"
-            android:text="Covid Care"
+            android:text="Helping Tree"
             android:textColor="#000"
-            android:textSize="60dp" />
+            android:textSize="30dp" />
 
         <ImageView
             android:id="@+id/img"

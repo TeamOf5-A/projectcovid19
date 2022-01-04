@@ -11,6 +11,7 @@
         android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,24 +27,26 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+               android:layout_centerVertical="true"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/montserrat_alternates"
-                android:text="Covid Care"
+                android:text="Helping Tree"
                 android:textColor="#fff"
-                android:textSize="30dp" />
-
-
+                android:textSize="25dp" />
 
 
             <ImageView
                 android:id="@+id/logout"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginEnd="20dp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerInParent="true"
+                android:layout_marginEnd="20dp"
                 android:src="@drawable/ic_baseline_login_24" />
+
+
+
 
 
         </RelativeLayout>
@@ -56,6 +59,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
@@ -74,102 +78,79 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+
                 android:orientation="vertical">
 
+
                 <LinearLayout
+                    android:id="@+id/availability"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginEnd="20dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/linearlayoutbox"
+                    android:orientation="vertical"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp">
 
-                    <LinearLayout
-                        android:id="@+id/availability"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.5"
-                        android:paddingTop="40dp"
-                        android:paddingBottom="40dp"
-                        android:background="@drawable/linearlayoutbox"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:text="do you want to help"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:textSize="20dp"
-                            android:text="Hospital Availability"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
-
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/request"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/linearlayoutbox"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:textSize="20dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:text="Post the Request"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Help the people who are needy>"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
 
 
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/request"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="60dp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="40dp"
+                    android:background="@drawable/linearlayoutbox"
+                    android:orientation="vertical"
+                    android:paddingTop="30dp"
+                    android:paddingBottom="30dp">
 
-                    <LinearLayout
-                        android:id="@+id/profile"
+                    <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="5dp"
-                        android:layout_weight="0.5"
-                        android:background="@drawable/linearlayoutbox"
-                        android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
 
-                        <TextView
-                            android:id="@+id/profile_text"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:paddingTop="30dp"
-                            android:textSize="25dp"
-                            android:paddingBottom="30dp"
-                            android:text="My Requests"
-                            android:textColor="#000"
-                            android:textStyle="bold" />
+                        android:gravity="center"
+                        android:text="Do u need Help?"
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="Post and share request >"
+                        android:textColor="#000"
+                        android:textSize="15dp" />
 
-
-                    </LinearLayout>
 
                 </LinearLayout>
+
 
             </LinearLayout>
 
@@ -182,10 +163,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        >
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -197,17 +179,19 @@
             app:cardElevation="10dp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="true">
+
             <TextView
                 android:id="@+id/faq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="20dp"
+                android:fontFamily="@font/artifika"
+
                 android:gravity="center"
-                android:textColor="#000"
-                android:textSize="20dp"
-               android:fontFamily="@font/artifika"
+                android:paddingTop="20dp"
                 android:paddingBottom="20dp"
-                android:text="Covid-19 FAQ >"/>
+                android:text="Covid-19 FAQ >"
+                android:textColor="#000"
+                android:textSize="20dp" />
 
 
         </androidx.cardview.widget.CardView>
@@ -216,10 +200,11 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_marginBottom="20dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -228,9 +213,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Developed By Team of 5"
+            android:text="Developed By DoDo A&amp;S"
             android:textColor="#fff"
             android:textSize="15dp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

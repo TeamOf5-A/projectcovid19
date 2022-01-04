@@ -2,10 +2,12 @@ package com.example.projectcovid19;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,7 +19,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,12 +36,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,17 +59,27 @@ public class Post_Request extends AppCompatActivity {
     private Button submit;
     DatePickerDialog datePickerDialog;
     Context context;
+    String username;
+
     ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private FirebaseUser firebaseUser;
+
+    String[] array1 = new String[]{"Need covid-19 medicines", "Need Vaccine", "Need Food", "Need Hospital consultancy", "Need Oxygen Bed","Add any other request"};
+    ArrayList<String> ar = new ArrayList<String>();
+    ArrayAdapter<String> spinnerAdapter;
+    ArrayAdapter<String> spinnerAdapter2;
+
     private static final String KEYspinner = "request";
     private static final String KEYdate = "date";
     private static final String KEYUsername = "username";
     private static final String KEYPincode = "Pincode";
     private static final String KEYCity = "CITY";
+    private static final String KEYNAME = "username";
 
-    String[] request = {"Need covid-19 medicines", "Need Vaccine", "Need Food", "Need Hospital consultancy", "Need Oxygen Bed"};
+
+    String[] request = {"Need covid-19 medicines", "Need Vaccine", "Need Food", "Need Hospital consultancy", "Need Oxygen Bed","Add any other request"};
 
 
     @Override
@@ -75,10 +92,15 @@ public class Post_Request extends AppCompatActivity {
         Spinner = findViewById(R.id.spinner);
         submit = findViewById(R.id.submit);
         progressBar = findViewById(R.id.progress_bar);
+
+        spinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ar);
+        spinnerAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, array1);
+
         Spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
         //Dynamically generate a spinner data 
         createSpinnerDropDown();
+
         Datepicker = findViewById(R.id.Date);
         Datepicker.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,10 +129,13 @@ public class Post_Request extends AppCompatActivity {
     }
 
     private void updateHospitalRequest() {
-        String Uid = firebaseUser.getUid();
+
+        String pn = firebaseUser.getPhoneNumber();
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String Uid=firebaseUser.getUid();
                 progressBar.setVisibility(View.VISIBLE);
                 String requesttext = Spinner.getSelectedItem().toString();
                 String date = Datepicker.getText().toString();
@@ -120,67 +145,57 @@ public class Post_Request extends AppCompatActivity {
                     Datepicker.setError("Please enter Non Icu Beds");
                 } else {
                     // calling method to add data to Firebase Firestore.
+                    db.collection("User_profile").document("User").collection("Users").document(Uid).get()
+                            .addOnCompleteListener(
+                                    new OnCompleteListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                            if (task.isSuccessful()) {
+                                                if (task.getResult().exists()) {
+
+                                                    username = task.getResult().getString("nameofperson");
+                                                    String pn = task.getResult().getString("pn");
+                                                    String city1 = task.getResult().getString("CITY");
+
+
+
+
+                                                }
+                                            } else {
+                                                Toast.makeText(context, "ERROR:" + task.getException()
+                                                        .getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+                            );
+
 
                     Map<String, Object> data = new HashMap<>();
                     data.put(KEYspinner, requesttext);
                     data.put(KEYdate, date);
-                    db.collection("User").document("User profile").collection("Users").document(Uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull @NotNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                if (task.getResult().exists()) {
-                                    String account_type = task.getResult().getString("Account");
-                                    String username = task.getResult().getString("nameofperson");
-                                    String city = task.getResult().getString("CITY");
-                                    String Pincode = task.getResult().getString("Pincode");
-                                    try {
-                                        if (account_type.equals(user)) {
-                                            db.collection("User").document("Request").collection(Uid).add(data)
-                                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                        @Override
-                                                        public void onSuccess(DocumentReference documentReference) {
-                                                            progressBar.setVisibility(View.INVISIBLE);
+                    data.put("timestamp", FieldValue.serverTimestamp());
+                    data.put("Uid",firebaseUser.getUid());
+                    data.put("PhoneNumber",pn);
+                    data.put(KEYNAME,username);
 
-                                                            Toast.makeText(Post_Request.this, "successfully posted ", Toast.LENGTH_SHORT).show();
-                                                            Intent intent = new Intent(Post_Request.this, Request.class);
-                                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                            startActivity(intent);
-                                                            finish();
-                                                        }
-                                                    }).addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    progressBar.setVisibility(View.INVISIBLE);
-                                                    Toast.makeText(Post_Request.this, "Failed due to " + e, Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-                                        }
 
-                                    } catch (Exception e) {
-                                        Log.d(TAG, "get failed with " + e);
-                                    }
-                                }else {
-                                    db.collection("Hospital").document("Request").collection(Uid).add(data)
-                                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                                @Override
-                                                public void onSuccess(DocumentReference documentReference) {
-                                                    progressBar.setVisibility(View.INVISIBLE);
+                    db.collection("Request User").add(data)
+                            .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    progressBar.setVisibility(View.INVISIBLE);
 
-                                                    Toast.makeText(Post_Request.this, "successfully posted ", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(Post_Request.this, Request.class);
-                                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                                    startActivity(intent);
-                                                    finish();
-                                                }
-                                            }).addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            progressBar.setVisibility(View.INVISIBLE);
-                                            Toast.makeText(Post_Request.this, "Failed due to " + e, Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                                    Toast.makeText(Post_Request.this, "successfully posted ", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Post_Request.this, Request.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
                                 }
-                            }
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressBar.setVisibility(View.INVISIBLE);
+                            Toast.makeText(Post_Request.this, "Failed due to " + e, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -190,6 +205,10 @@ public class Post_Request extends AppCompatActivity {
         });
 
     }
+
+
+
+
 
     private void createSpinnerDropDown() {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
@@ -201,6 +220,7 @@ public class Post_Request extends AppCompatActivity {
         //attach the listener to the spinner
         Spinner.setOnItemSelectedListener(new MyOnItemSelectedListener());
 
+
     }
 
     public class MyOnItemSelectedListener implements AdapterView.OnItemSelectedListener {
@@ -208,6 +228,7 @@ public class Post_Request extends AppCompatActivity {
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
             String selectedItem = parent.getItemAtPosition(pos).toString();
+
 
             //check which spinner triggered the listener
             switch (parent.getId()) {
@@ -217,9 +238,57 @@ public class Post_Request extends AppCompatActivity {
                     if (selectedCountry != null) {
                         Toast.makeText(parent.getContext(), "Request you selected is " + selectedItem,
                                 Toast.LENGTH_LONG).show();
+
                     }
-                    selectedCountry = selectedItem;
-                    break;
+                    if(selectedItem.equals("Add any other request")){
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Post_Request.this);
+                        alertDialog.setTitle("Enter your Request");
+
+                        alertDialog.setCancelable(false);
+
+                        final EditText input = new EditText(Post_Request.this);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        //lp.setMargins(20,5,10,5);
+                        input.setMaxLines(1);
+
+                        input.setLayoutParams(lp);
+                        alertDialog.setView(input);
+
+
+                        alertDialog.setPositiveButton("YES",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        String newrequest = input.getText().toString();
+
+
+                                        ar.add(newrequest);
+
+                                        Spinner.setAdapter(spinnerAdapter);
+                                    }
+
+
+                                });
+
+                        alertDialog.setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                });
+
+                        alertDialog.show();
+                    }
+                    else {
+                        selectedCountry = selectedItem;
+                        break;
+                    }
+
+
+
+
+
 
             }
 

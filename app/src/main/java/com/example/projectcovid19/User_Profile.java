@@ -35,7 +35,7 @@ public class User_Profile extends AppCompatActivity {
     private static final String KEY_STATE = "state";
     private static final String KEY_PINCODE = "Pincode";
     private static final String KEY_CITY = "CITY";
-    private static final String Key_accounttype = "Account";
+    private static final String KEY_PN = "pn";
     private FirebaseUser firebaseUser;
     private String PinCode;
     private FirebaseFirestore db;
@@ -96,14 +96,15 @@ public class User_Profile extends AppCompatActivity {
                 else {
                     // calling method to add data to Firebase Firestore.
                     String Uid=firebaseUser.getUid();
+                    String pn = firebaseUser.getPhoneNumber();
                     Map<String,Object> data = new HashMap<>();
                     data.put(KEY_NAMEOF_PERSON,nameofperson);
                     data.put(KEY_EMAIL,email);
                     data.put(KEY_STATE,States);
                     data.put(KEY_PINCODE,Pincode);
                     data.put(KEY_CITY,CITY);
-                    data.put(Key_accounttype,"User");
-                    db.collection("User").document("User profile").collection("Users").document(Uid).set(data)
+                    data.put(KEY_PN,pn);
+                    db.collection("User_profile").document("User").collection("Users").document(Uid).set(data)
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void unused) {

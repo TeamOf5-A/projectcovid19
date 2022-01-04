@@ -2,67 +2,53 @@ package com.example.projectcovid19;
 
 public class Availability_pozo {
 
-    private  String icubeds;
-    private String nonicubeds;
-    private String Vaccines;
-    private String drugs;
-    private String OxygenBeds;
-    private String O2concentration;
 
-    public Availability_pozo(String icubeds, String nonicubeds, String vaccines, String drugs, String oxygenBeds, String o2concentration) {
-        this.icubeds = icubeds;
-        this.nonicubeds = nonicubeds;
-        this.Vaccines = vaccines;
-        this.drugs = drugs;
-       this.OxygenBeds = oxygenBeds;
-        this.O2concentration = o2concentration;
+    public String username;
+    public String request;
+    public String date;
+    public String PhoneNumber;
+    public String City;
+
+    public Availability_pozo(String username, String request, String date, String PhoneNumber) {
+        this.username = username;
+        this.request = request;
+        this.date = date;
+        this.PhoneNumber = PhoneNumber;
+
+    }
+    public Availability_pozo() {
     }
 
-    public String getIcubeds() {
-        return icubeds;
+    public String getUsername() {
+        return username;
     }
 
-    public void setIcubeds(String icubeds) {
-        this.icubeds = icubeds;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getNonicubeds() {
-        return nonicubeds;
+    public String getRequest() {
+        return request;
     }
 
-    public void setNonicubeds(String nonicubeds) {
-        this.nonicubeds = nonicubeds;
+    public void setRequest(String request) {
+        this.request = request;
     }
 
-    public String getVaccines() {
-        return Vaccines;
+    public String getFinaldate() {
+        return date;
     }
 
-    public void setVaccines(String vaccines) {
-        Vaccines = vaccines;
+    public void setFinaldate(String finaldate) {
+        this.date = finaldate;
     }
 
-    public String getDrugs() {
-        return drugs;
+    public String getPhoneno() {
+        return PhoneNumber;
     }
 
-    public void setDrugs(String drugs) {
-        this.drugs = drugs;
+    public void setPhoneno(String phoneno) {
+        this.PhoneNumber = phoneno;
     }
 
-    public String getOxygenBeds() {
-        return OxygenBeds;
-    }
-
-    public void setOxygenBeds(String oxygenBeds) {
-        OxygenBeds = oxygenBeds;
-    }
-
-    public String getO2concentration() {
-        return O2concentration;
-    }
-
-    public void setO2concentration(String o2concentration) {
-        O2concentration = o2concentration;
-    }
 }
